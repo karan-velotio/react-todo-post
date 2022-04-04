@@ -1,10 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../Home";
+import User from "src/theme/User";
+import Todo from "src/theme/User";
 
 const RouteManager = () => (
   <Routes>
-    <Route path="/" element={<Home />} />
+    <Route path="/" element={<User />} />
+    <Route path="/todo" element={<Todo />} />
   </Routes>
 );
 
