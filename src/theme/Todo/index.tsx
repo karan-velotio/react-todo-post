@@ -1,4 +1,5 @@
 import React from "react";
+import Container from "@mui/material/Container";
 
-const Todo = () => <div>Todo Container</div>;
+const Todo = () => <Container maxWidth="xl">User Container</Container>;
 export default Todo;
