@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,7 +11,10 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["Post", "Todo"];
+const pages: { pathName: string, name: string }[] = [
+  { pathName: "/user", name: "User" },
+  { pathName: "/todo ", name: "Todo" }
+];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -65,11 +69,17 @@ const Header = () => {
                 display: { xs: "block", md: "none" }
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {
+                pages.map(({ pathName, name }) => (
+                  <MenuItem key={name} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link to={pathName} style={{ textDecoration: "none", color: "black" }}>
+                        {name}
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                ))
+              }
             </Menu>
           </Box>
           <Typography
@@ -78,18 +88,21 @@ const Header = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            LOGO
+            Velotio
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            {
+              pages.map(({ pathName, name }) => (
+                <Link key={name} style={{ textDecoration: "none", color: "white" }} to={pathName}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {name}
+                  </Button>
+                </Link>
+              ))
+            }
           </Box>
         </Toolbar>
       </Container>
