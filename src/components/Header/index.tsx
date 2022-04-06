@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,11 +13,12 @@ import MenuItem from "@mui/material/MenuItem";
 
 const pages: { pathName: string, name: string }[] = [
   { pathName: "/user", name: "User" },
-  { pathName: "/todo ", name: "Todo" }
+  { pathName: "/todo", name: "Todo" }
 ];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  let location = useLocation();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -28,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -71,7 +72,7 @@ const Header = () => {
             >
               {
                 pages.map(({ pathName, name }) => (
-                  <MenuItem key={name} onClick={handleCloseNavMenu}>
+                  <MenuItem key={name} onClick={handleCloseNavMenu} selected={pathName === location.pathname}>
                     <Typography textAlign="center">
                       <Link to={pathName} style={{ textDecoration: "none", color: "black" }}>
                         {name}

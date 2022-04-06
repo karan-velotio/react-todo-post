@@ -76,7 +76,7 @@ const users: DemoUser[] = [
 const User = () => (
   <Container maxWidth="xl" sx={{ padding: "20px 0", display: "flex", flexFlow: "row wrap" }}>
     {
-      users.map((user) => <UserCard {...user} />)
+      users.map((user) => <UserCard key={user.id} {...user} />)
     }
   </Container>
 );
