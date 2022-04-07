@@ -15,12 +15,25 @@ interface IUserProps {
 };
 
 const UserCard: React.FC<IUserProps> = ({ name }) => (
-  <Card sx={{ maxWidth: 345, margin: "0 16px 16px 0", position: "relative" }}>
+  <Card
+    sx={{
+      position: "relative",
+      width: { md: "calc(33.33% - 20px)", sm: "calc(50% - 20px)", xs: "100%" },
+      margin: "20px 0 0 20px"
+    }}
+  >
     <IconButton aria-label="settings" sx={{ position: "absolute", right: 0 }}>
       <MoreVertIcon />
     </IconButton>
-    <CardContent>
-      <Avatar area-label="user" sx={{ height: "200px", width: "200px", margin: "auto" }} />
+    <CardContent sx={{ padding: "20px" }}>
+      <Avatar
+        area-label="user"
+        sx={{
+          width: "50%",
+          height: "50%",
+          margin: "auto",
+          aspectRatio: "1 / 1",
+        }} />
       <Typography textAlign="center" mt={1} variant="body2" color="text.secondary">
         {name}
       </Typography>

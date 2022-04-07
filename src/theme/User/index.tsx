@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import UserCard from "src/components/UserCard";
 
 interface DemoUser {
@@ -74,10 +75,20 @@ const users: DemoUser[] = [
 ]; // dummy for ui
 
 const User = () => (
-  <Container maxWidth="xl" sx={{ padding: "20px 0", display: "flex", flexFlow: "row wrap" }}>
-    {
-      users.map((user) => <UserCard key={user.id} {...user} />)
-    }
+  <Container maxWidth="xl">
+    <Box
+      sx={{
+        display: "flex",
+        flexFlow: "row wrap",
+        padding: "20px 0",
+        width: "calc(100% + 20px)",
+        margin: "-20px 0 0 -20px"
+      }}
+    >
+      {
+        users.map((user) => <UserCard key={user.id} {...user} />)
+      }
+    </Box>
   </Container>
 );
 export default User;
