@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import UserCard from "src/components/UserCard";
+import { getUsers } from "src/state/user/actions";
 
 interface DemoUser {
   id: number;
@@ -72,23 +74,35 @@ const users: DemoUser[] = [
     "username": "Moriah.Stanton",
     "email": "Rey.Padberg@karina.biz"
   }
-]; // dummy for ui
+];
 
-const User = () => (
-  <Container maxWidth="xl">
-    <Box
-      sx={{
-        display: "flex",
-        flexFlow: "row wrap",
-        padding: "20px 0",
-        width: "calc(100% + 20px)",
-        margin: "-20px 0 0 -20px"
-      }}
-    >
-      {
-        users.map((user) => <UserCard key={user.id} {...user} />)
-      }
-    </Box>
-  </Container>
-);
+const User = () => {
+  const dispatch = useDispatch();
+  const users_ = useSelector(state => {
+    console.log(state);
+  })
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
+  return (
+    <Container maxWidth="xl">
+      <Box
+        sx={{
+          display: "flex",
+          flexFlow: "row wrap",
+          padding: "20px 0",
+          width: "calc(100% + 20px)",
+          margin: "-20px 0 0 -20px"
+        }}
+      >
+        {
+          users.map((user) => <UserCard key={user.id} {...user} />)
+        }
+      </Box>
+    </Container>
+  );
+};
+
 export default User;
