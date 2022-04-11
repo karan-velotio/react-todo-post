@@ -10,15 +10,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-
-const pages: { pathName: string, name: string }[] = [
-  { pathName: "/user", name: "User" },
-  { pathName: "/todo", name: "Todo" }
-];
+import routes from "src/routes";
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  let location = useLocation();
+  const location = useLocation();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -71,7 +67,7 @@ const Header = () => {
               }}
             >
               {
-                pages.map(({ pathName, name }) => (
+                routes.map(({ pathName, name }) => (
                   <MenuItem key={name} onClick={handleCloseNavMenu} selected={pathName === location.pathname}>
                     <Typography textAlign="center">
                       <Link to={pathName} style={{ textDecoration: "none", color: "black" }}>
@@ -93,7 +89,7 @@ const Header = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {
-              pages.map(({ pathName, name }) => (
+              routes.map(({ pathName, name }) => (
                 <Link key={name} style={{ textDecoration: "none", color: "white" }} to={pathName}>
                   <Button
                     onClick={handleCloseNavMenu}

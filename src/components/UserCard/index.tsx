@@ -1,6 +1,5 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -9,14 +8,11 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-interface IUserProps {
-  id: number;
-  name: string,
-  username?: string,
-  email?: string
+type IUserProps = {
+  user: User
 };
 
-const UserCard: React.FC<IUserProps> = ({ name }) => {
+const UserCard: React.FC<IUserProps> = ({ user }) => {
   const [anchorElMenu, setanchorElMenu] = React.useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -68,7 +64,7 @@ const UserCard: React.FC<IUserProps> = ({ name }) => {
             aspectRatio: "1 / 1"
           }} />
         <Typography textAlign="center" mt={1} variant="body2" color="text.secondary">
-          {name}
+          {user.name}
         </Typography>
       </CardContent>
     </Card>
