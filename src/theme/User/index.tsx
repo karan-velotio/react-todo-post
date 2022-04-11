@@ -5,18 +5,22 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import UserCard from "src/components/UserCard";
-import { getUsers } from "src/state/user/actions";
+import { getUsers, resetUserComponent } from "src/state/user/actions";
 
 const User = () => {
   const dispatch = useDispatch();
   const { users, status } = useSelector((state: ReduxStore) => ({
     users: state.user.users,
-    status: state.user.status,
+    status: state.user.status
   }));
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+
+    return () => {
+      dispatch(resetUserComponent());
+    };
+  }, []);
 
   if (status === "loading") {
     return (
@@ -37,7 +41,7 @@ const User = () => {
           }}
         >
           {
-            (status === "success") && users.map((user) => <UserCard key={user.id} user={user} />)
+            users.map((user) => <UserCard key={user.id} user={user} />)
           }
         </Box>
       </Container>

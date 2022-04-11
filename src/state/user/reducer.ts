@@ -1,4 +1,4 @@
-import { GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAIL } from "./actionConstants";
+import { GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAIL, RESET_USER_COMPONENT } from "./actionConstants";
 
 const initialState: UserStore = {
   status: "idle",
@@ -28,6 +28,13 @@ const userReducer = (state = initialState, action: UserAction): UserStore => {
         status: "fail",
         error: payload
       };
+    case RESET_USER_COMPONENT:
+      return {
+        ...state,
+        status: "idle",
+        users: [],
+        error: null
+      }
     default :
       return state;
   }

@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "src/components/Header";
+import { Outlet } from "react-router-dom";
 
-const Layout: React.FC = ({ children }) => {
+const Layout = () => {
   return (<>
     <Header />
-    <div>{children}</div>
+    <Outlet />
   </>);
 };
 

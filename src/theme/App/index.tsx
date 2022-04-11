@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import store from "src/state/store";
 
-import Layout from "./Layout";
 import RouteManager from "./RouteManager";
 
 const App = () => (
@@ -12,9 +11,7 @@ const App = () => (
     <CssBaseline />
     <Provider store={store}>
       <BrowserRouter>
-        <Layout>
-          <RouteManager />
-        </Layout>
+        <RouteManager />
       </BrowserRouter>
     </Provider>
   </React.Fragment>
