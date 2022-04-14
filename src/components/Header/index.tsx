@@ -26,7 +26,7 @@ const Header = () => {
   }, []);
 
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="sticky" color="primary" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

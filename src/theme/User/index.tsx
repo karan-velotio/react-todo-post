@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -7,6 +7,16 @@ import CircularProgress from "@mui/material/CircularProgress";
 import UserCard from "src/components/UserCard";
 import { getUsers, resetUserComponent } from "src/state/user/actions";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
+const Loader: React.FC = ()=> {
+  return (
+    <Box sx={{ display: "inline-block" , textAlign: "center", overflow: "hidden", height: "100%", width: "100%" }}>
+      <CircularProgress />
+    </Box>
+  );
+}
+
 const User = () => {
   const dispatch = useDispatch();
   const { users, status } = useSelector((state: ReduxStore) => ({
@@ -14,8 +24,23 @@ const User = () => {
     status: state.user.status
   }));
 
+  const totalUsers = 50;
+  const [hasMore, setHasMore] = useState(true);
+
+  const fetchUsersData = (query?: UserQuery) => {
+    if (!query) {
+      dispatch(getUsers());
+      return;
+    }
+    if (users.length === totalUsers) {
+      setHasMore(false);
+      return;
+    }
+    dispatch(getUsers(query));
+  };
+
   useEffect(() => {
-    dispatch(getUsers());
+    fetchUsersData();
 
     return () => {
       dispatch(resetUserComponent());
@@ -23,17 +48,9 @@ const User = () => {
   }, []);
 
   const renderUserCard = useCallback(
-    (user: User) => <UserCard key={user.id} user={user} />,
+    (user: User, index) => <UserCard key={index} user={user} />,
     []
   );
-
-  if (status === "loading") {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
   
   return (
     <Container maxWidth="xl">
@@ -47,7 +64,27 @@ const User = () => {
           ml: -2,
         }}
       >
-        { users.map(renderUserCard) }
+        <InfiniteScroll
+          dataLength={users.length}
+          next={() => fetchUsersData({loadMore: true})}
+          hasMore={hasMore}
+          loader={<Loader />}
+          endMessage={
+            <p
+              style={{
+                display: "flex",
+                flexGrow: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+          style={{ display: "flex", flexFlow: "row wrap" }}
+        >
+          {users.map(renderUserCard)}
+        </InfiniteScroll>
       </Box>
     </Container>
   );

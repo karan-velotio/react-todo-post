@@ -1,4 +1,3 @@
-
 declare interface User {
   id: string;
   name: string;
@@ -12,15 +11,15 @@ declare interface User {
     geo: {
       lat: string;
       lng: string;
-    }
-  },
+    };
+  };
   phone: string;
   website: string;
   company: {
     name: string;
     catchPhrase: string;
     bs: string;
-  }
+  };
 }
 
 declare interface UserStore {
@@ -29,16 +28,12 @@ declare interface UserStore {
   error: Error | String | Unknown;
 }
 
-declare interface UserActionPayloadData {
+declare interface UserPayload {
   data: User[];
   status: number;
+  loadMore?: boolean;
 }
 
-declare interface UserActionPayloadError {
-  error: Error | String | Unknown
-}
-
-declare interface UserAction {
-  type?: string;
-  payload: UserActionPayloadData & UserActionPayloadError;
+declare interface UserQuery {
+  loadMore?: boolean;
 }
