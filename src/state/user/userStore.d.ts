@@ -26,13 +26,19 @@ declare interface User {
 declare interface UserStore {
   status: "idle" | "loading" | "success" | "fail";
   users: User[];
-  error: Error | string | null;
+  error: Error | String | Unknown;
+}
+
+declare interface UserActionPayloadData {
+  data: User[];
+  status: number;
+}
+
+declare interface UserActionPayloadError {
+  error: Error | String | Unknown
 }
 
 declare interface UserAction {
-  type: string;
-  payload: {
-    data: User[];
-    status: number;
-  } & Error;
+  type?: string;
+  payload: UserActionPayloadData & UserActionPayloadError;
 }
