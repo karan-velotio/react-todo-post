@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -22,6 +22,11 @@ const User = () => {
     };
   }, []);
 
+  const renderUserCard = useCallback(
+    (user: User) => <UserCard key={user.id} user={user} />,
+    []
+  );
+
   if (status === "loading") {
     return (
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
@@ -41,7 +46,7 @@ const User = () => {
           }}
         >
           {
-            users.map((user) => <UserCard key={user.id} user={user} />)
+            users.map(renderUserCard)
           }
         </Box>
       </Container>

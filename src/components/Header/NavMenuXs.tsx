@@ -7,11 +7,11 @@ import Typography from "@mui/material/Typography";
 interface INavMenuXsProps {
   routes: AppRoute[];
   handleCloseNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
-};
+}
 
 const NavMenuXs: React.FC<INavMenuXsProps> = ({ routes, handleCloseNavMenu }) => {
   const location = useLocation();
-  console.log('here', location);
+
   return (
     <React.Fragment>
       {

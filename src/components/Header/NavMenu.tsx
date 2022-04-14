@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 
 interface INavMenuProps {
   routes: AppRoute[]
-};
+}
 
 const NavMenu: React.FC<INavMenuProps> = ({ routes }) => {
 
