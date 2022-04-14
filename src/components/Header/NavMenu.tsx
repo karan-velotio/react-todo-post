@@ -9,7 +9,7 @@ interface INavMenuProps {
 const NavMenu: React.FC<INavMenuProps> = ({ routes }) => {
 
   return (
-    <React.Fragment>
+    <>
       {
         routes.map(({ pathName, name }) => (
           <Link key={name} style={{ textDecoration: "none", color: "white" }} to={pathName}>
@@ -21,7 +21,7 @@ const NavMenu: React.FC<INavMenuProps> = ({ routes }) => {
           </Link>
         ))
       }
-    </React.Fragment>
+    </>
   );
 };
 

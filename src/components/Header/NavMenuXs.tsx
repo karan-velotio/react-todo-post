@@ -13,7 +13,7 @@ const NavMenuXs: React.FC<INavMenuXsProps> = ({ routes, handleCloseNavMenu }) =>
   const location = useLocation();
 
   return (
-    <React.Fragment>
+    <>
       {
         routes.map(({ pathName, name }) => (
           <MenuItem key={name} onClick={handleCloseNavMenu} selected={pathName === location.pathname}>
@@ -25,7 +25,7 @@ const NavMenuXs: React.FC<INavMenuXsProps> = ({ routes, handleCloseNavMenu }) =>
           </MenuItem>
         ))
       }
-    </React.Fragment>
+    </>
   );
 };
 

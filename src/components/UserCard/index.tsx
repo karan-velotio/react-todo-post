@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
@@ -15,13 +15,16 @@ type IUserProps = {
 const UserCard: React.FC<IUserProps> = ({ user }) => {
   const [anchorElMenu, setanchorElMenu] = React.useState<null | HTMLElement>(null);
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setanchorElMenu(event.currentTarget);
-  };
+  const handleOpenUserMenu = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setanchorElMenu(event.currentTarget);
+    },
+    []
+  );
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = useCallback(() => {
     setanchorElMenu(null);
-  };
+  }, []);
 
   return (
     <Card

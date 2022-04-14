@@ -7,14 +7,14 @@ import store from "src/state/store";
 import RouteManager from "./RouteManager";
 
 const App = () => (
-  <React.Fragment>
+  <>
     <CssBaseline />
     <Provider store={store}>
       <BrowserRouter>
         <RouteManager />
       </BrowserRouter>
     </Provider>
-  </React.Fragment>
+  </>
 );
 
 export default App;

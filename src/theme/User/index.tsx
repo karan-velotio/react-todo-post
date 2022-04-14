@@ -33,25 +33,24 @@ const User = () => {
         <CircularProgress />
       </Box>
     );
-  } else {
-    return (
-      <Container maxWidth="xl">
-        <Box
-          sx={{
-            display: "flex",
-            flexFlow: "row wrap",
-            padding: "20px 0",
-            width: "calc(100% + 20px)",
-            margin: "-20px 0 0 -20px"
-          }}
-        >
-          {
-            users.map(renderUserCard)
-          }
-        </Box>
-      </Container>
-    );
   }
+  
+  return (
+    <Container maxWidth="xl">
+      <Box
+        sx={{
+          display: "flex",
+          flexFlow: "row wrap",
+          width: "calc(100% + 16px)",
+          pt: 2,
+          mt: -2,
+          ml: -2,
+        }}
+      >
+        { users.map(renderUserCard) }
+      </Box>
+    </Container>
+  );
 
 };
 
