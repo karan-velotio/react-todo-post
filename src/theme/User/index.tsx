@@ -8,12 +8,12 @@ import { getUsers, resetUserComponent } from "src/state/user/actions";
 import UserTopBar from "src/theme/User/UserTopBar";
 
 const User = () => {
-  const totalUsers = 50;
   const [hasMore, setHasMore] = useState(true);
 
   const dispatch = useDispatch();
-  const { users } = useSelector((state: ReduxStore) => ({
+  const { users, totalUsers } = useSelector((state: ReduxStore) => ({
     users: state.user.users,
+    totalUsers: state.user.totalUsers,
   }));
 
   const fetchUsersData = (query?: UserQuery) => {

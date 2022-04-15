@@ -3,12 +3,14 @@ import {
   GET_USERS_SUCCESS,
   GET_USERS_FAIL,
   RESET_USER_COMPONENT,
+  ADD_USER,
 } from "./actionConstants";
 
 const initialState: UserStore = {
   status: "idle",
   users: [],
   error: null,
+  totalUsers: 50,
 };
 
 const userReducer = (
@@ -44,6 +46,18 @@ const userReducer = (
         ...state,
         status: "fail",
         error: payload,
+      };
+    case ADD_USER:
+      return <UserStore>{
+        ...state,
+        totalUsers: state.totalUsers + 1,
+        users: [
+          ...state.users,
+          {
+            ...payload,
+            id: state.totalUsers + 1,
+          },
+        ],
       };
     case RESET_USER_COMPONENT:
       return {
