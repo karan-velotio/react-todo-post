@@ -7,7 +7,7 @@ import UserCard from "src/components/UserCard";
 import { getUsers, resetUserComponent } from "src/state/user/actions";
 
 const User = () => {
-  const totalUsers: number = 50;
+  const totalUsers = 50;
   const [hasMore, setHasMore] = useState(true);
 
   const dispatch = useDispatch();
