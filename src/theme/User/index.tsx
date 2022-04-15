@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import InfiniteScrollBox from "src/components/InfiniteScroll";
 import UserCard from "src/components/UserCard";
 import { getUsers, resetUserComponent } from "src/state/user/actions";
+import UserTopBar from "src/theme/User/UserTopBar";
 
 const User = () => {
   const totalUsers = 50;
@@ -42,6 +43,7 @@ const User = () => {
 
   return (
     <Container maxWidth="xl">
+      <UserTopBar />
       <Box
         sx={{
           display: "flex",
