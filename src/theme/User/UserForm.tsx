@@ -10,13 +10,18 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+import MenuItem from "@mui/material/MenuItem";
 
+const noSpaceRegExp = /^\S*$/;
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const validationSchema = yup.object({
   name: yup.string().required(),
-  username: yup.string().required(),
+  username: yup
+    .string()
+    .matches(noSpaceRegExp, "Enter valid username")
+    .required(),
   email: yup.string().email("Enter a valid email").required(),
   phone: yup
     .string()
@@ -28,14 +33,23 @@ const validationSchema = yup.object({
 });
 
 interface IUserFormProps {
+  isEdit?: boolean;
   submitAction: (user: User) => void;
+  user?: User;
+  onOpen?: () => void;
 }
 
-const UserForm: React.FC<IUserFormProps> = ({ submitAction }) => {
+const UserForm: React.FC<IUserFormProps> = ({
+  isEdit,
+  submitAction,
+  user,
+  onOpen,
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
+    typeof onOpen !== "undefined" && onOpen();
   };
 
   const handleClose = () => {
@@ -44,15 +58,25 @@ const UserForm: React.FC<IUserFormProps> = ({ submitAction }) => {
   };
 
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      username: "",
-      email: "",
-      phone: "",
-      website: "",
-      city: "",
-      zipcode: "",
-    },
+    initialValues: !user
+      ? {
+          name: "",
+          username: "",
+          email: "",
+          phone: "",
+          website: "",
+          city: "",
+          zipcode: "",
+        }
+      : {
+          name: user.name,
+          username: user.username,
+          email: user.email,
+          phone: user.phone,
+          website: user.website,
+          city: user.address?.city || "",
+          zipcode: user.address?.zipcode || "",
+        },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const user: User = {
@@ -73,13 +97,17 @@ const UserForm: React.FC<IUserFormProps> = ({ submitAction }) => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={handleClickOpen}
-        startIcon={<AddIcon />}
-      >
-        Add User
-      </Button>
+      {!isEdit ? (
+        <Button
+          variant="contained"
+          onClick={handleClickOpen}
+          startIcon={<AddIcon />}
+        >
+          Add User
+        </Button>
+      ) : (
+        <MenuItem onClick={handleClickOpen}>Edit</MenuItem>
+      )}
       <Dialog
         fullWidth={true}
         maxWidth={"sm"}
@@ -107,7 +135,6 @@ const UserForm: React.FC<IUserFormProps> = ({ submitAction }) => {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  autoFocus
                   size="small"
                   id="username"
                   label="Username"
@@ -140,7 +167,7 @@ const UserForm: React.FC<IUserFormProps> = ({ submitAction }) => {
                   id="phone"
                   label="Phone"
                   name="phone"
-                  type="tel"
+                  type="text"
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   error={formik.touched.phone && Boolean(formik.errors.phone)}

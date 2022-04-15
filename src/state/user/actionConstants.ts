@@ -3,3 +3,4 @@ export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_FAIL = "GET_USERS_FAIL";
 export const RESET_USER_COMPONENT = "RESET_USER_COMPONENT";
 export const ADD_USER = "ADD_USER";
+export const UPDATE_USER = "UPDATE_USER";

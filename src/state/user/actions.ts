@@ -7,6 +7,7 @@ import {
   GET_USERS_FAIL,
   RESET_USER_COMPONENT,
   ADD_USER,
+  UPDATE_USER,
 } from "./actionConstants";
 
 export const getUsersRequest = (): ReduxAction => ({ type: GET_USERS_REQUEST });
@@ -40,6 +41,11 @@ export const getUsers = (query?: UserQuery) => {
 
 export const addUser = (payload: User): ReduxAction => ({
   type: ADD_USER,
+  payload,
+});
+
+export const updateUser = (payload: User): ReduxAction => ({
+  type: UPDATE_USER,
   payload,
 });
 

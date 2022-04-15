@@ -4,6 +4,7 @@ import {
   GET_USERS_FAIL,
   RESET_USER_COMPONENT,
   ADD_USER,
+  UPDATE_USER,
 } from "./actionConstants";
 
 const initialState: UserStore = {
@@ -15,7 +16,7 @@ const initialState: UserStore = {
 
 const userReducer = (
   state = initialState,
-  action: ReduxAction<UserPayload>
+  action: ReduxAction<UserPayload & User>
 ): UserStore => {
   const { type, payload } = action;
   switch (type) {
@@ -59,6 +60,21 @@ const userReducer = (
           },
         ],
       };
+    case UPDATE_USER: {
+      const users = [...state.users];
+      if (payload) {
+        const userIndex = state.users.findIndex(
+          (user) => user.username === payload.username
+        );
+        if (userIndex !== -1) {
+          users[userIndex] = payload;
+        }
+      }
+      return <UserStore>{
+        ...state,
+        users,
+      };
+    }
     case RESET_USER_COMPONENT:
       return {
         ...state,
