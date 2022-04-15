@@ -226,7 +226,7 @@ const UserForm: React.FC<IUserFormProps> = ({
         <DialogActions sx={{ p: 2.5 }}>
           <Button onClick={handleClose}>Cancel</Button>
           <Button variant="contained" onClick={() => formik.handleSubmit()}>
-            Add
+            {!isEdit ? 'Add' : 'Update'}
           </Button>
         </DialogActions>
       </Dialog>
