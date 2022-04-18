@@ -67,6 +67,7 @@ const UserCard: React.FC<IUserProps> = ({ user }) => {
             xs: "100%",
           },
           margin: "20px 0 0 20px",
+          cursor: "pointer",
         }}
         onClick={(e) => {
           e.preventDefault();
