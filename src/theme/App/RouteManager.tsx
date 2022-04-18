@@ -11,7 +11,7 @@ const RouteManager = () => (
       <Route path="/" element={<User />} />
       <Route path="/user">
         <Route index element={<User />} />
-        <Route path=":id" element={<Posts />} />
+        <Route path=":id/posts" element={<Posts />} />
       </Route>
       <Route path="/todo" element={<Todo />} />
     </Route>

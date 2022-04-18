@@ -70,7 +70,7 @@ const UserCard: React.FC<IUserProps> = ({ user }) => {
         }}
         onClick={(e) => {
           e.preventDefault();
-          navigate(`/user/${user.id}`);
+          navigate(`/user/${user.id}/posts`);
         }}
       >
         <IconButton
