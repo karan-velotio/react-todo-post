@@ -5,6 +5,7 @@ import {
   GET_POSTS_REQUEST,
   GET_POSTS_SUCCESS,
   GET_POSTS_FAIL,
+  RESET_POST_COMPONENT,
 } from "src/state/posts/actionConstants";
 
 export const getPostsRequest = (): ReduxAction => ({ type: GET_POSTS_REQUEST });
@@ -19,14 +20,15 @@ export const getPostsFail = (payload: Error | unknown) => ({
   payload,
 });
 
-export const getPosts = (id: number) => {
+export const getPosts = (query: PostQuery) => {
   return async (dispatch: Dispatch) => {
     dispatch(getPostsRequest());
     try {
-      const response = await API.get(`/users/${id}/posts`);
+      const response = await API.get(`/users/${query.id}/posts`);
       const payload = {
         status: response.status,
         data: response.data,
+        ...(query.loadMore && { loadMore: query.loadMore }),
       };
       dispatch(getPostsSuccess(payload));
     } catch (error) {
@@ -34,3 +36,7 @@ export const getPosts = (id: number) => {
     }
   };
 };
+
+export const resetPostComponent = (): ReduxAction => ({
+  type: RESET_POST_COMPONENT,
+});
