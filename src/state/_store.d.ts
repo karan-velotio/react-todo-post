@@ -1,3 +1,4 @@
 declare type ReduxStore = {
-  user: UserStore,
+  user: UserStore;
+  post: PostStore;
 };
