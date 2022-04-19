@@ -2,10 +2,12 @@ import React, { useCallback, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import UserForm from "src/theme/User/UserForm";
 import { useDispatch } from "react-redux";
@@ -67,11 +69,6 @@ const UserCard: React.FC<IUserProps> = ({ user }) => {
             xs: "100%",
           },
           margin: "20px 0 0 20px",
-          cursor: "pointer",
-        }}
-        onClick={(e) => {
-          e.preventDefault();
-          navigate(`/user/${user.id}/posts`);
         }}
       >
         <IconButton
@@ -100,6 +97,26 @@ const UserCard: React.FC<IUserProps> = ({ user }) => {
             {user.name}
           </Typography>
         </CardContent>
+        <CardActions sx={{ display: "flex" }}>
+          <Button
+            sx={{ flex: 1 }}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.preventDefault();
+              navigate(`/user/${user.id}/posts`);
+            }}
+          >
+            Posts
+          </Button>
+          <Button
+            sx={{ flex: 1 }}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.preventDefault();
+              navigate(`/user/${user.id}/todos`);
+            }}
+          >
+            Todo
+          </Button>
+        </CardActions>
       </Card>
       <Menu
         id="menu-appbar"
