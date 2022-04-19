@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import user from "./user/reducer";
-import post from "./posts/reducer";
+import user from "src/state/user/reducer";
+import post from "src/state/posts/reducer";
+import todo from "src/state/todos/reducer";
 
 const rootReducer = combineReducers({
   user,
   post,
+  todo,
 });
 
 export default rootReducer;
