@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+
+import { getUsers, resetUserComponent } from "src/state/user/actions";
 import InfiniteScrollBox from "src/components/InfiniteScroll";
 import UserCard from "src/components/UserCard";
-import { getUsers, resetUserComponent } from "src/state/user/actions";
 import UserTopBar from "src/theme/User/UserTopBar";
 
 const User = () => {

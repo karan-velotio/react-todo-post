@@ -1,10 +1,11 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
+import { useDispatch } from "react-redux";
+
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import UserForm from "src/theme/User/UserForm";
-import { addUser } from "src/state/user/actions";
 
-import { useDispatch } from "react-redux";
+import { addUser } from "src/state/user/actions";
+import UserForm from "src/theme/User/UserForm";
 
 const AddUserComponent = () => {
   const dispatch = useDispatch();

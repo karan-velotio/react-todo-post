@@ -1,7 +1,8 @@
 import React from "react";
-import Header from "src/components/Header";
 import { Outlet } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import Header from "src/components/Header";
 
 const outerTheme = createTheme({
   palette: {

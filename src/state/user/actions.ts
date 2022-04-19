@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
-import API from "src/api/api";
 
+import API from "src/api/api";
 import {
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,

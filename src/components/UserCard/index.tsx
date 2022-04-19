@@ -1,5 +1,7 @@
-import React, { useCallback, memo } from "react";
+import React, { memo, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
@@ -9,9 +11,9 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
-import UserForm from "src/theme/User/UserForm";
-import { useDispatch } from "react-redux";
+
 import { updateUser } from "src/state/user/actions";
+import UserForm from "src/theme/User/UserForm";
 
 type IUserProps = {
   user: User;

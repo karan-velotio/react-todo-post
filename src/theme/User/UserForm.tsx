@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -226,7 +227,7 @@ const UserForm: React.FC<IUserFormProps> = ({
         <DialogActions sx={{ p: 2.5 }}>
           <Button onClick={handleClose}>Cancel</Button>
           <Button variant="contained" onClick={() => formik.handleSubmit()}>
-            {!isEdit ? 'Add' : 'Update'}
+            {!isEdit ? "Add" : "Update"}
           </Button>
         </DialogActions>
       </Dialog>

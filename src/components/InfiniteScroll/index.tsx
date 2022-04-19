@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactNode } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+
 import Loader from "src/components/Loader";
 
 interface IInfiniteScrollProps {

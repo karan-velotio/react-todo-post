@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,12 +8,15 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
+
 import NavMenu from "src/components/Header/NavMenu";
 import NavMenuXs from "src/components/Header/NavMenuXs";
 import routes from "src/routes";
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
 
   const handleOpenNavMenu = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -26,7 +30,7 @@ const Header = () => {
   }, []);
 
   return (
-    <AppBar position="sticky" color="primary" >
+    <AppBar position="sticky" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -54,22 +58,25 @@ const Header = () => {
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left"
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "left"
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" }
+                display: { xs: "block", md: "none" },
               }}
             >
-              {
-                Boolean(anchorElNav) && <NavMenuXs routes={routes} handleCloseNavMenu={handleCloseNavMenu} />
-              }
+              {Boolean(anchorElNav) && (
+                <NavMenuXs
+                  routes={routes}
+                  handleCloseNavMenu={handleCloseNavMenu}
+                />
+              )}
             </Menu>
           </Box>
           <Typography
