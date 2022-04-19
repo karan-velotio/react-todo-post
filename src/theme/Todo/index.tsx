@@ -30,7 +30,8 @@ const Todo = () => {
   }));
 
   const fetchTodosData = (query: TodosQuery) => {
-    if (todos.length === totalTodos) {
+    console.log(todos.length);
+    if (todos.length >= totalTodos) {
       setHasMore(false);
       return;
     }
@@ -46,8 +47,6 @@ const Todo = () => {
   }, [dispatch, userId]);
 
   const renderTodos = useCallback((todo: Todo, index: number) => {
-    const labelId = `checkbox-list-label-${todo.title}`;
-
     return (
       <ListItem key={index}>
         <ListItemButton
@@ -62,7 +61,6 @@ const Todo = () => {
               checked={todo.completed}
               tabIndex={-1}
               disableRipple
-              inputProps={{ "aria-labelledby": labelId }}
             />
           </ListItemIcon>
         </ListItemButton>

@@ -10,7 +10,7 @@ const initialState: TodosStore = {
   status: "idle",
   todos: [],
   error: null,
-  totalTodos: 50,
+  totalTodos: 60,
 };
 
 const postsReducer = (
